@@ -1,3 +1,8 @@
 #!/bin/sh
-echo "ssss"
-STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep ".\(js\|vue\)$" | grep -v "node_modules" | grep -v "static")
+# dirname $0，取得当前执行的脚本文件的父目录，cd到父目录，即进入当前工作目录，pwd显示当前工作目录
+workdir=$(cd $(dirname $0); pwd)
+echo "当前目录${workdir}"
+cd ${workdir}
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM ./lib | grep ".\.dart$")
+echo $STAGED_FILES
+echo "结果是$?"
